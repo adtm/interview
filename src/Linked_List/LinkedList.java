@@ -90,4 +90,23 @@ public class LinkedList {
         System.out.println(behind.data);
     }
 
+
+    Node get(int index) {
+        int counter = 1;
+        Node current = head;
+        while ( current != null ) {
+            if (counter == index) return current;
+            current = current.next;
+            counter++;
+        }
+        return null;
+    }
+
+
+    void deleteMiddleNode(Node index) {
+        Node next = index.next;
+        index.data = next.data;
+        index.next = next.next;
+    }
+
 }
