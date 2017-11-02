@@ -61,5 +61,33 @@ public class LinkedList {
         }
     }
 
+    // with size
+    void kthToLast(int kth) {
+        int index = 0;
+        Node current = head;
+        while ( current != null ) {
+            if (index == size - kth) {
+                System.out.println(current.data);
+                break;
+            }
+            current = current.next;
+            index++;
+        }
+    }
+
+    // with pointers
+    void kthToLastPointers(int kth) {
+        int index = 0;
+        Node current = head;
+        Node behind = head;
+        while ( current.next != null ) {
+            if (index >= kth) {
+               behind = behind.next;
+            }
+            current = current.next;
+            index++;
+        }
+        System.out.println(behind.data);
+    }
 
 }
