@@ -109,4 +109,28 @@ public class LinkedList {
         index.next = next.next;
     }
 
+    void sumList(LinkedList s) {
+
+        int carry = 0;
+
+        while (head != null || s.head != null) {
+            if (head != null) {
+                carry += head.data;
+                head = head.next;
+            }
+
+            if (s.head != null) {
+                carry += s.head.data;
+                s.head = s.head.next;
+            }
+
+            System.out.println(carry % 10);
+            carry /= 10;
+        }
+        if (carry > 0) {
+            System.out.println(carry);
+        }
+    }
+
+
 }
