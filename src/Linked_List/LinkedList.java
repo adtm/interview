@@ -221,4 +221,20 @@ public class LinkedList {
         return false;
     }
 
+
+    boolean ifIntersect(LinkedList l2) {
+        Node first = head;
+        Node second = l2.head;
+
+        while (first.next != null) {
+            first = first.next;
+        }
+
+        while (second.next != null) {
+            second = second.next;
+        }
+
+        return first.hashCode() == second.hashCode();
+    }
+
 }
