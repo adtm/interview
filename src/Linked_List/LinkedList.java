@@ -1,6 +1,7 @@
 package Linked_List;
 
 import java.util.HashSet;
+import java.util.Stack;
 
 public class LinkedList {
 
@@ -145,7 +146,7 @@ public class LinkedList {
        return prev;
     }
 
-    boolean palindorme() {
+    boolean palindrome() {
         Node current = head;
         Node previous = new Node(head.data);
 
@@ -166,7 +167,31 @@ public class LinkedList {
         return true;
     }
 
+    boolean stackPalindrome() {
+        Node slow = head;
+        Node fast = head;
 
+        Stack<Integer> stack = new Stack<Integer>();
+
+        while (fast != null && fast.next != null) {
+            stack.push(slow.data);
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        if (fast != null) {
+            slow = slow.next;
+        }
+
+        while (slow != null) {
+            int value = stack.pop();
+            if (value != slow.data) {
+                return false;
+            }
+            slow = slow.next;
+        }
+        return true;
+    }
     
 
 }
