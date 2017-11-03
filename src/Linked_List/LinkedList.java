@@ -1,5 +1,6 @@
 package Linked_List;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Stack;
 
@@ -203,6 +204,21 @@ public class LinkedList {
             if (turtle.data == rabit.data) return turtle.data;
         }
         return 0;
+    }
+
+    boolean intersection(LinkedList l2) {
+        HashMap hashMap = new HashMap ();
+        Node current = head;
+        while (current != null) {
+            hashMap.put(current.hashCode(), current.data);
+            current = current.next;
+        }
+        Node checked = l2.head;
+        while (checked != null) {
+            if (hashMap.containsKey(checked.hashCode())) return true;
+            checked = checked.next;
+        }
+        return false;
     }
 
 }
