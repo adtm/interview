@@ -110,9 +110,7 @@ public class LinkedList {
     }
 
     void sumList(LinkedList s) {
-
         int carry = 0;
-
         while (head != null || s.head != null) {
             if (head != null) {
                 carry += head.data;
@@ -132,5 +130,43 @@ public class LinkedList {
         }
     }
 
+    Node reverse(Node head) {
+        Node next = null;
+        Node prev = null;
+        Node current = head;
+        while ( current != null ) {
+
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+
+       }
+       return prev;
+    }
+
+    boolean palindorme() {
+        Node current = head;
+        Node previous = new Node(head.data);
+
+        while (current.next != null) {
+            Node temp = new Node(current.next.data);
+            temp.next = previous;
+            previous = temp;
+            current = current.next;
+        }
+
+        Node l1 = head;
+        Node l2 = previous;
+        while (l1 != null) {
+            if (l1.data != l2.data) return false;
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+        return true;
+    }
+
+
+    
 
 }
