@@ -193,5 +193,16 @@ public class LinkedList {
         return true;
     }
     
+    int circular() {
+        Node turtle = head;
+        Node rabit = head;
+
+        while (turtle.next != null || rabit.next.next != null) {
+            turtle = turtle.next;
+            rabit = rabit.next.next;
+            if (turtle.data == rabit.data) return turtle.data;
+        }
+        return 0;
+    }
 
 }
