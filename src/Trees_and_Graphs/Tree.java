@@ -1,6 +1,8 @@
 package Trees_and_Graphs;
 
 
+import java.util.LinkedList;
+
 public class Tree {
     public Node sortedArrayToBST(int[] array) {
         if (array.length == 0) {
@@ -20,5 +22,38 @@ public class Tree {
         root.right = sortedArrayToBST(array, mid + 1, end);
 
         return root;
+    }
+
+    int height(Node head) {
+        if (head == null) {
+            return 0;
+        } else {
+            int lheigh = height(head.left);
+            int rheigh = height(head.right);
+
+            if (lheigh > rheigh) return lheigh + 1;
+            else return rheigh + 1;
+        }
+    }
+
+
+    LinkedList printLevels(Node head) {
+        LinkedList values = new LinkedList();
+        int height = this.height(head);
+        for (int i = 0; i <= height; i++) {
+            LinkedList list = new LinkedList();
+            printLevelNodes(head, i, list);
+            values.add(list);
+        }
+        return values;
+    }
+
+    private void printLevelNodes(Node head, int level, LinkedList list) {
+        if (head == null) return;
+        else if (level == 1) list.add(head.val);
+        else {
+            printLevelNodes(head.left, level - 1, list);
+            printLevelNodes(head.right, level - 1, list);
+        }
     }
 }
