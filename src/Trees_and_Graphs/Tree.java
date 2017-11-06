@@ -1,7 +1,6 @@
 package Trees_and_Graphs;
 
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Stack;
 
@@ -97,5 +96,42 @@ public class Tree {
             if (lHeight > rHeight) return lHeight + 1;
             else return rHeight + 1;
         }
+    }
+
+    void preOrderTraversal(Node root) {
+        if (root != null) {
+            System.out.println(root.val);
+            preOrderTraversal(root.left);
+            preOrderTraversal(root.right);
+        }
+    }
+
+    void postOrderTraversal(Node root) {
+        if (root != null) {
+            postOrderTraversal(root.left);
+            postOrderTraversal(root.right);
+            System.out.println(root.val);
+        }
+    }
+
+    boolean isBST(Node root) {
+        if (root == null) return false;
+        Stack<Node> stack = new Stack<>();
+        Node pre = null;
+
+        while (root != null || !stack.empty()) {
+
+             while (root != null) {
+                 stack.push(root);
+                 root = root.left;
+             }
+             root = stack.pop();
+
+             if (pre != null && pre.val >= root.val) return false;
+             pre = root;
+             root = root.right;
+
+        }
+        return true;
     }
 }
